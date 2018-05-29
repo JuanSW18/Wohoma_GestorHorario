@@ -48,7 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/colorPrimaryDark"
-            android:onClick="iniciarSesion"
             android:text="@string/hintIniciarSesion"
             android:textColor="@android:color/background_light" />
 

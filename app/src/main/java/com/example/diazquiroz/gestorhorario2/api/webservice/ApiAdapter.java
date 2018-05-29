@@ -10,9 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiAdapter {
 
-    /*private static ApiAdapter API_SERVICE;
+    private static ApiAdapter API_SERVICE;
 
-    public static ApiAdapter getApiService(){
+    /*public static ApiAdapter getApiService(){
         // Creamos un interceptor y le indicamos el log level a usar
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -55,4 +55,5 @@ public class ApiAdapter {
         }
         return retrofit.create(serviceClass);
     }
+
 }
