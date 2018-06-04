@@ -28,8 +28,9 @@ public class Login extends AppCompatActivity {
     private String pass;
 
     private CharSequence bienvenida = "Bienvenido";
-    private CharSequence error = "Correo y/o contraseña no válidos";
+    private CharSequence error_login = "Correo y/o contraseña no válidos";
     private CharSequence datos_vacios = "Faltan datos";
+    private CharSequence ERROR = "UPPS PASO ALGO";
     private Toast toast;
 
     private Intent intent;
@@ -77,7 +78,8 @@ public class Login extends AppCompatActivity {
                 if(response.isSuccessful()){
                     user = response.body();
                     status = response.body().getStatus();
-                    if (!status.equals(null)) {
+                    Log.i(TAG, "VALOR DE STATUS:\n" + status);
+                    //if (!status.equals(null)) {
                         if (status.equals("ok")) {
                             toast = Toast.makeText(context, bienvenida, duration);
                             toast.show();
@@ -88,17 +90,20 @@ public class Login extends AppCompatActivity {
                             edUser.setText("");
                             edPass.setText("");
                         } else {
-                            toast = Toast.makeText(context, error, duration);
+                            toast = Toast.makeText(context, error_login, duration);
                             toast.show();
                         }
-                    } else
+                    /*} else{
                         Log.i(TAG, "Status del login: " + status);
+                    }*/
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Log.e(TAG, "Unable to submit post to API.");
+                Log.e(TAG, "PASO ALGO:\n Unable to submit post to API.");
+                toast = Toast.makeText(context, ERROR, duration);
+                toast.show();
             }
         });
     }
