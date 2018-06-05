@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity {
                             toast = Toast.makeText(context, bienvenida, duration);
                             toast.show();
 
-                            intent = new Intent(Login.this, Principal.class);
+                            intent = new Intent(Login.this, PrincipalAdmin.class);
                             startActivity(intent);
 
                             edUser.setText("");
