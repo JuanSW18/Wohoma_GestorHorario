@@ -10,6 +10,9 @@ public class Tienda {
 
     private String status = "ok";
 
+    @SerializedName("idTienda")
+    private Integer idTienda;
+
     @SerializedName("direccion")
     private String direccion;
 
@@ -49,6 +52,14 @@ public class Tienda {
 
     public void setStatus(String status){
         this.status = status;
+    }
+
+    public Integer getIdTienda() {
+        return idTienda;
+    }
+
+    public void setIdTienda(Integer idTienda) {
+        this.idTienda= idTienda;
     }
 
     public String getDireccion() {

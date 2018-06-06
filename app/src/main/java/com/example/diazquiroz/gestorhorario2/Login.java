@@ -83,6 +83,7 @@ public class Login extends AppCompatActivity {
                         if (status.equals("ok")) {
                             toast = Toast.makeText(context, bienvenida, duration);
                             toast.show();
+                            System.out.print("Hola mundo");
 
                             intent = new Intent(Login.this, PrincipalAdmin.class);
                             startActivity(intent);
