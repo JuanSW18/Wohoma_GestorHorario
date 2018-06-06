@@ -15,35 +15,53 @@ public class Principal extends AppCompatActivity {
 
     private TextView tvToolBar;
     private Toolbar myToolbar;
-    private MenuView.ItemView iv_cerrarSesion;
+    //private MenuView.ItemView iv_cerrarSesion;
 
+    private Bundle bundle;
     private TextView tvNombre;
     private TextView tvDni;
     private TextView tvTienda;
+
+    private int idEmpleado;
+    private String nombreEmpleado;
+    private String dniEmpleado;
+    private String tiendaEmpleado;
+
     // array que se usara para mandar data mediante el intent
-    private String dataEmpleado[];
+    // 0506 PSIBLEMENTE YA NO SIRVA ESTE STRING
+    //private String dataEmpleado[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        myToolbar = (Toolbar) findViewById(R.id.appToolBar);
+        tvToolBar =  myToolbar.findViewById(R.id.appToolBar_title);
+        //iv_cerrarSesion = findViewById(R.id.item_cerrar_sesion);
+
+        bundle = getIntent().getExtras();
         tvNombre = findViewById(R.id.nombreTxt);
         tvDni = findViewById(R.id.DNIText);
         tvTienda = findViewById(R.id.tiendaTxt);
-        myToolbar = (Toolbar) findViewById(R.id.appToolBar);
-        tvToolBar =  myToolbar.findViewById(R.id.appToolBar_title);
-        iv_cerrarSesion = findViewById(R.id.item_cerrar_sesion);
 
+        idEmpleado = bundle.getInt("USER_ID");
+        nombreEmpleado = bundle.getString("USER_FULL_NAME");
+        dniEmpleado = bundle.getString("USER_DNI");
+        //falta capturar la tienda
 
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         tvToolBar.setText("Inicio");
+
+        tvNombre.setText(nombreEmpleado);
+        tvDni.setText(dniEmpleado);
         // Llamar a metodo para llenar los 3 campos (nombre, dni, tienda)
-        tvNombre.setText("Elmer Frio Quiroz");
-        tvDni.setText("78542369");
+        /*tvNombre.setText("Elmer Frio Quiroz");
+        tvDni.setText("78542369");*/
         tvTienda.setText("Av. Brasil 1236");
+
 
     }
 
@@ -68,12 +86,19 @@ public class Principal extends AppCompatActivity {
 
     public void asistenciaBtn(View view) {
         Intent intent = new Intent(this, Asistencia.class);
-        intent.putExtra("nombreTienda", tvTienda.getText());
+        //intent.putExtra("nombreTienda", tvTienda.getText());
+        intent.putExtra("USER_ID", idEmpleado);
+        // mandar TIENDA
+        // intent.putExtra();
         startActivity(intent);
     }
 
     public void historialBtn (View view) {
         Intent intent = new Intent(this, Historial.class);
+        intent.putExtra("USER_ID", idEmpleado);
+        intent.putExtra("USER_FULL_NAME", nombreEmpleado);
+        intent.putExtra("USER_DNI", dniEmpleado);
+        //mandar TIENDA
         startActivity(intent);
     }
 

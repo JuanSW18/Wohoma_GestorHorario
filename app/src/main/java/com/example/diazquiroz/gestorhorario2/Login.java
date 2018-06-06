@@ -77,6 +77,7 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     user = response.body();
+                    Log.i(TAG, response.body().toString());
                     status = response.body().getStatus();
                     Log.i(TAG, "VALOR DE STATUS:\n" + status);
                     //if (!status.equals(null)) {
@@ -85,9 +86,19 @@ public class Login extends AppCompatActivity {
                             toast.show();
                             System.out.print("Hola mundo");
 
-                            intent = new Intent(Login.this, PrincipalAdmin.class);
-                            startActivity(intent);
+                            // CACHIMBO PENDEJO PON UNA CONDICIONAL PARA MANDAR AL USER A SU RESPECTIVA VISTA
+                            if(user.getIdEmpleado() == 1){
+                                intent = new Intent(Login.this, PrincipalAdmin.class);
+                                startActivity(intent);
+                            }
 
+                            else{
+                                intent = new Intent(Login.this, Principal.class);
+                                intent.putExtra("USER_ID", user.getIdEmpleado());
+                                intent.putExtra("USER_FULL_NAME", user.getNombre() + " " + user.getApPaterno() + " " + user.getApMaterno());
+                                intent.putExtra("USER_DNI", user.getDni());
+                                startActivity(intent);
+                            }
                             edUser.setText("");
                             edPass.setText("");
                         } else {
