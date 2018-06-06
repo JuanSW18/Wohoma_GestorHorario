@@ -2,6 +2,7 @@ package com.example.diazquiroz.gestorhorario2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuView;
@@ -20,17 +21,18 @@ public class Asistencia extends AppCompatActivity {
 
     private Toolbar myToolbar;
     private TextView tvToolBar;
-    private MenuView.ItemView iv_cerrarSesion;
 
     private Context context;
     private Toast toast_horaMarcada;
     private String mensaje_toast;
+
+    private TextView tvTienda;
     private TextView entradaH;
     private TextView salidaH;
 
     private Bundle bundle;
+    private int idEmpleado;
     private String nombreTienda;
-    private TextView tvTienda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +42,17 @@ public class Asistencia extends AppCompatActivity {
         myToolbar = (Toolbar) findViewById(R.id.appToolBar);
         tvToolBar =  myToolbar.findViewById(R.id.appToolBar_title);
         context = getApplicationContext();
+        tvTienda = findViewById(R.id.tv_tienda);
         entradaH = findViewById(R.id.entradaH);
         salidaH = findViewById(R.id.salidaH);
-        iv_cerrarSesion = findViewById(R.id.item_cerrar_sesion);
-        tvTienda = findViewById(R.id.tv_tienda);
         bundle = getIntent().getExtras();
-        nombreTienda = bundle.getString("nombreTienda");
-
+        //nombreTienda = bundle.getString("nombreTienda");
 
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         tvToolBar.setText("Asistencia");
-        tvTienda.setText(nombreTienda);
+        //tvTienda.setText(nombreTienda);
     }
 
     public void entrada(View view) {
@@ -95,4 +95,5 @@ public class Asistencia extends AppCompatActivity {
         }
         return true;
     }
+
 }

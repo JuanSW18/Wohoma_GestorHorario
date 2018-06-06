@@ -14,7 +14,17 @@ public class Historial extends AppCompatActivity {
 
     private Toolbar myToolbar;
     private TextView tvToolBar;
-    private MenuView.ItemView iv_cerrarSesion;
+    //private MenuView.ItemView iv_cerrarSesion;
+
+    private TextView tvNombre;
+    private TextView tvDni;
+    private TextView tvTienda;
+
+    private Bundle bundle;
+    private int idEmpleado;
+    private String nombreEmpleado;
+    private String dniEmpleado;
+    private String nombreTienda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +33,26 @@ public class Historial extends AppCompatActivity {
 
         myToolbar = (Toolbar) findViewById(R.id.appToolBar);
         tvToolBar =  myToolbar.findViewById(R.id.appToolBar_title);
-        iv_cerrarSesion = findViewById(R.id.item_cerrar_sesion);
+        //iv_cerrarSesion = findViewById(R.id.item_cerrar_sesion);
+
+        tvNombre = findViewById(R.id.nombreTxt);
+        tvDni = findViewById(R.id.DNITxt);
+        tvTienda = findViewById(R.id.tiendaTxt);
+
+        bundle = getIntent().getExtras();
+        idEmpleado = bundle.getInt("USER_ID");
+        nombreEmpleado = bundle.getString("USER_FULL_NAME");
+        dniEmpleado = bundle.getString("USER_DNI");
+        //nombreTienda = bundle.getString("USER_TIENDA");
 
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         tvToolBar.setText("Historial");
+
+        tvNombre.setText(nombreEmpleado);
+        tvDni.setText(dniEmpleado);
+        //tvTienda.setText(nombreTienda);
     }
 
     @Override

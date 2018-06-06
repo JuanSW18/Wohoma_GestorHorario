@@ -6,7 +6,6 @@ import com.example.diazquiroz.gestorhorario2.api.model.User;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -18,5 +17,9 @@ public interface ApiService {
     @POST("/tienda/nuevo")
     @FormUrlEncoded
     Call<Tienda> saveTienda(@Field("json") String json);
+
+    /*@GET("/asistencia/lista")
+    @FormUrlEncoded
+    ;*/
 
 }
