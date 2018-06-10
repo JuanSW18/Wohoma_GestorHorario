@@ -49,6 +49,7 @@ public class Principal extends AppCompatActivity {
         nombreEmpleado = bundle.getString("USER_FULL_NAME");
         dniEmpleado = bundle.getString("USER_DNI");
         //falta capturar la tienda
+        tiendaEmpleado = bundle.getString("USER_TIENDA");
 
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -60,7 +61,7 @@ public class Principal extends AppCompatActivity {
         // Llamar a metodo para llenar los 3 campos (nombre, dni, tienda)
         /*tvNombre.setText("Elmer Frio Quiroz");
         tvDni.setText("78542369");*/
-        tvTienda.setText("Av. Brasil 1236");
+        tvTienda.setText(tiendaEmpleado);
 
 
     }

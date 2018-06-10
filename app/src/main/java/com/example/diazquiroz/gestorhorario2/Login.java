@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
 import com.example.diazquiroz.gestorhorario2.api.model.User;
+import com.example.diazquiroz.gestorhorario2.api.model.UserDetail;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiAdapter;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiService;
 
@@ -77,30 +79,12 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     user = response.body();
-                    Log.i(TAG, response.body().toString());
-                    status = response.body().getStatus();
-                    Log.i(TAG, "VALOR DE STATUS:\n" + status);
+                    //Log.i(TAG, response.body().toString());
+                    //status = response.body().getStatus();
+                    //Log.i(TAG, "VALOR DE STATUS:\n" + status);
                     //if (!status.equals(null)) {
-                        if (status.equals("ok")) {
-                            toast = Toast.makeText(context, bienvenida, duration);
-                            toast.show();
-                            System.out.print("Hola mundo");
-
-                            // CACHIMBO PENDEJO PON UNA CONDICIONAL PARA MANDAR AL USER A SU RESPECTIVA VISTA
-                            if(user.getIdEmpleado() == 1){
-                                intent = new Intent(Login.this, PrincipalAdmin.class);
-                                startActivity(intent);
-                            }
-
-                            else{
-                                intent = new Intent(Login.this, Principal.class);
-                                intent.putExtra("USER_ID", user.getIdEmpleado());
-                                intent.putExtra("USER_FULL_NAME", user.getNombre() + " " + user.getApPaterno() + " " + user.getApMaterno());
-                                intent.putExtra("USER_DNI", user.getDni());
-                                startActivity(intent);
-                            }
-                            edUser.setText("");
-                            edPass.setText("");
+                        if (user.getStatus().equals("ok")) {
+                            getDetalleUsuario(user.getIdEmpleado());
                         } else {
                             toast = Toast.makeText(context, error_login, duration);
                             toast.show();
@@ -116,6 +100,47 @@ public class Login extends AppCompatActivity {
                 Log.e(TAG, "PASO ALGO:\n Unable to submit post to API.");
                 toast = Toast.makeText(context, ERROR, duration);
                 toast.show();
+            }
+        });
+    }
+
+    //FUNCION PARA OBTENER EL NOMBRE DE LA TIENDA
+    public void getDetalleUsuario(int idEmpleado){
+        apiService = ApiAdapter.createService(ApiService.class);
+        Call<UserDetail> call = apiService.getDetalleUsuario(idEmpleado);
+        call.enqueue(new Callback<UserDetail>() {
+            @Override
+            public void onResponse(Call<UserDetail> call, Response<UserDetail> response) {
+                if(response.isSuccessful()){
+                    String direccionTienda = response.body().getData().getIdTienda().getDireccion();
+                    //Log.i(TAG, "DATOS TIENDA:\n" + response.body().getData().getIdTienda().getDireccion());
+
+                    toast = Toast.makeText(context, bienvenida, duration);
+                    toast.show();
+
+                    // CACHIMBO PENDEJO PON UNA CONDICIONAL PARA MANDAR AL USER A SU RESPECTIVA VISTA
+                    if(user.getIdEmpleado() == 1){
+                        intent = new Intent(Login.this, PrincipalAdmin.class);
+                        startActivity(intent);
+                    }
+
+                    else{
+                        intent = new Intent(Login.this, Principal.class);
+                        intent.putExtra("USER_ID", user.getIdEmpleado());
+                        intent.putExtra("USER_FULL_NAME", user.getNombre() + " " + user.getApPaterno() + " " + user.getApMaterno());
+                        intent.putExtra("USER_DNI", user.getDni());
+                        intent.putExtra("USER_TIENDA", direccionTienda);
+                        startActivity(intent);
+                    }
+                    edUser.setText("");
+                    edPass.setText("");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserDetail> call, Throwable t) {
+                Log.e(TAG, "Error al obtener detalle de usuario");
             }
         });
     }

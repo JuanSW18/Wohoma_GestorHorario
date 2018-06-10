@@ -4,22 +4,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
-import com.example.diazquiroz.gestorhorario2.api.resultados.AnswersAdapter;
-import com.example.diazquiroz.gestorhorario2.api.resultados.TrackEntityHolder;
+import com.example.diazquiroz.gestorhorario2.api.model.TiendaList;
+import com.example.diazquiroz.gestorhorario2.api.resultados.TiendaAdapter;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiAdapter;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,88 +43,83 @@ public class PrincipalAdmin extends AppCompatActivity {
     private CharSequence ERROR = "UPPS PASO ALGO";
     private Toast toast;
 
-    private Tienda tienda;
-
     private ApiService apiService;
-    private String status;
     private final String TAG = registroTienda.class.getSimpleName();
 
-    private AnswersAdapter mAdapter;
-    private RecyclerView mRecyclerView;
-    private ApiService mService;
+    private RecyclerView recyclerView;
+    private List<Tienda> tiendas = new ArrayList<>();
+    private TiendaAdapter tiendaAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_admin);
 
-        myToolbar = (Toolbar) findViewById(R.id.appToolBar);
+        myToolbar = findViewById(R.id.appToolBar);
         tvToolBar = myToolbar.findViewById(R.id.appToolBar_title);
+
+        recyclerView = findViewById(R.id.my_recycler_view);
+        tiendaAdapter = new TiendaAdapter(PrincipalAdmin.this, tiendas);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PrincipalAdmin.this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(tiendaAdapter);
 
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         tvToolBar.setText("Tiendas");
 
-        System.out.print("Hola mundo");
-
-
-        //
-        mService = ApiAdapter.createService(ApiService.class);
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        mAdapter = new AnswersAdapter(this, new ArrayList<Tienda>(0), new AnswersAdapter.PostItemListener() {
-
-            @Override
-            public void onPostClick(long id) {
-                Toast.makeText(PrincipalAdmin.this, "Post id is" + id, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(itemDecoration);
-
-        loadAnswers();
-
+        getTiendas();
     }
 
     public void nuevaTiendaBtn(View view) {
-        Intent intent = new Intent(this, registroTienda.class);
+        intent = new Intent(this, registroTienda.class);
         startActivity(intent);
     }
 
-    public void loadAnswers() {
-        mService.listTienda().enqueue(new Callback<TrackEntityHolder>() {
+    public void getTiendas(){
+        apiService = ApiAdapter.createService(ApiService.class);
+        Call<TiendaList> call = apiService.getTiendas();
+        call.enqueue(new Callback<TiendaList>() {
             @Override
-            public void onResponse(Call<TrackEntityHolder> call, Response<TrackEntityHolder> response) {
-
-                if(response.isSuccessful()) {
-                    mAdapter.updateAnswers(response.body().getResults());
-                    System.out.print(mAdapter.toString());
-                    //Log.d("PrincipalAdmin", "posts loaded from API");
-                    toast = Toast.makeText(context, correcto, duration);
-                    toast.show();
-                }else {
-                    int statusCode  = response.code();
-                    // handle request errors depending on status code
-                    toast = Toast.makeText(context, error_login, duration);
-                    toast.show();
+            public void onResponse(Call<TiendaList> call, Response<TiendaList> response) {
+                if(response.isSuccessful()){
+                    for(Tienda tienda: response.body().getData()){
+                        tiendas.add(tienda);
+                    }
+                    tiendaAdapter.notifyDataSetChanged();
+                }else{
+                    Log.e(TAG, response.message());
                 }
             }
 
             @Override
-            public void onFailure(Call<TrackEntityHolder> call, Throwable t) {
-                //showErrorMessage();
-                //Log.d("PrincipalAdmin", "error loading from API");
+            public void onFailure(Call<TiendaList> call, Throwable t) {
                 Log.e(TAG, "PASO ALGO:\n Unable to submit post to API.");
-                toast = Toast.makeText(context, ERROR, duration);
-                toast.show();
+                /*toast = Toast.makeText(context, ERROR, duration);
+                toast.show();*/
             }
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id_item = item.getItemId();
+        Intent intent = new Intent(this, Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        if( id_item == R.id.item_cerrar_sesion){
+            startActivity(intent);
+            finish();
+        }
+        return true;
+    }
 
 }

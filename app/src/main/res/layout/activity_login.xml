@@ -14,14 +14,20 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <TextView
+        <ImageView
+            android:layout_width="250px"
+            android:layout_height="150px"
+            android:layout_margin="0dp"
+            android:src="@drawable/logo_wohoma"/>
+
+        <!--TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="47dp"
-            android:text="Control de Asistencia"
+            android:text="WoHoMa"
             android:textSize="30sp"
             tools:layout_editor_absoluteX="49dp"
-            tools:layout_editor_absoluteY="41dp" />
+            tools:layout_editor_absoluteY="41dp" /-->
 
         <EditText
             android:id="@+id/userTxt"

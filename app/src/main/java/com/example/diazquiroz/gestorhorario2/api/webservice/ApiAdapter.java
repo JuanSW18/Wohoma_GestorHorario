@@ -36,6 +36,7 @@ public class ApiAdapter {
     }*/
 
     private final static String BASE_API_URL = "http://api.erickcordova.com/";
+    //private final static String BASE_API_URL = "http://192.34.57.112/";
     private static Retrofit retrofit = null;
     private static Gson gson = new GsonBuilder().create();
 

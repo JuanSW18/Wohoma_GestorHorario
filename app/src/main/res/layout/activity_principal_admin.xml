@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
     <LinearLayout
         android:id="@+id/layout_botones"
         android:layout_width="match_parent"
@@ -23,21 +29,13 @@
         <Button
             android:id="@+id/nuevaTiendaBtn"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
             android:onClick="nuevaTiendaBtn"
-            android:layout_marginLeft="120dp"
-            android:text="Nueva"
+            android:text="Nueva Tienda"
             android:textColor="@android:color/background_light"
             android:textSize="18sp"/>
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:scrollbars="vertical" />
 
 </LinearLayout>
