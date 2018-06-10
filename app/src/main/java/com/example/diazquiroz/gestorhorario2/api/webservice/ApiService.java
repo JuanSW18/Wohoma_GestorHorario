@@ -1,12 +1,11 @@
 package com.example.diazquiroz.gestorhorario2.api.webservice;
 
+import com.example.diazquiroz.gestorhorario2.api.model.EntidadAsistencia;
 import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
 import com.example.diazquiroz.gestorhorario2.api.model.TiendaList;
 import com.example.diazquiroz.gestorhorario2.api.model.User;
 import com.example.diazquiroz.gestorhorario2.api.model.UserDetail;
 import com.example.diazquiroz.gestorhorario2.api.resultados.TrackEntityHolder;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -31,5 +30,14 @@ public interface ApiService {
 
     @GET("/tienda/lista")
     Call<TiendaList> getTiendas();
+
+    @POST("/asistencia/nuevo")
+    @FormUrlEncoded
+    Call<EntidadAsistencia> saveAsistencia(@Field("json") String json);
+
+    @POST("/asistencia/editar/{id}")
+    @FormUrlEncoded
+    Call<EntidadAsistencia> editAsistencia(@Field("json") String json,
+                                           @Path("id") int idAsistencia);
 
 }
