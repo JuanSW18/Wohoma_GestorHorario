@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
             android:onClick="nuevaTiendaBtn"
-            android:layout_marginLeft="120dp"
             android:text="Nueva"
             android:textColor="@android:color/background_light"
             android:textSize="18sp"/>

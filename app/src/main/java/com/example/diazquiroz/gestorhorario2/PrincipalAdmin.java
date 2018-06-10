@@ -77,12 +77,12 @@ public class PrincipalAdmin extends AppCompatActivity {
             }
         });
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        /*RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(itemDecoration);
+        mRecyclerView.addItemDecoration(itemDecoration);*/
 
         loadAnswers();
 
