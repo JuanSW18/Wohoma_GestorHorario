@@ -33,11 +33,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
             android:onClick="nuevaTiendaBtn"
-<<<<<<< HEAD
             android:text="Nueva Tienda"
-=======
-            android:text="Nueva"
->>>>>>> c4b38d1412ab10177ca9407af0ef4c95ce2419ba
             android:textColor="@android:color/background_light"
             android:textSize="18sp"/>
     </LinearLayout>

@@ -105,6 +105,7 @@ public class Principal extends AppCompatActivity {
 
     public void permisosBtn (View view) {
         Intent intent = new Intent(this, Permisos.class);
+        intent.putExtra("USER_ID", idEmpleado);
         startActivity(intent);
     }
 
