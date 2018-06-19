@@ -26,6 +26,7 @@ public class Principal extends AppCompatActivity {
     private String nombreEmpleado;
     private String dniEmpleado;
     private String tiendaEmpleado;
+    private int idTienda;
 
     // array que se usara para mandar data mediante el intent
     // 0506 PSIBLEMENTE YA NO SIRVA ESTE STRING
@@ -48,6 +49,7 @@ public class Principal extends AppCompatActivity {
         idEmpleado = bundle.getInt("USER_ID");
         nombreEmpleado = bundle.getString("USER_FULL_NAME");
         dniEmpleado = bundle.getString("USER_DNI");
+        idTienda = bundle.getInt("ID_TIENDA");
         //falta capturar la tienda
         tiendaEmpleado = bundle.getString("USER_TIENDA");
 
@@ -89,8 +91,10 @@ public class Principal extends AppCompatActivity {
         Intent intent = new Intent(this, Asistencia.class);
         //intent.putExtra("nombreTienda", tvTienda.getText());
         intent.putExtra("USER_ID", idEmpleado);
+        intent.putExtra("USER_DNI", dniEmpleado);
+        intent.putExtra("ID_TIENDA", idTienda);
         // mandar TIENDA
-        // intent.putExtra();
+        intent.putExtra("USER_TIENDA", tiendaEmpleado);
         startActivity(intent);
     }
 
@@ -99,6 +103,8 @@ public class Principal extends AppCompatActivity {
         intent.putExtra("USER_ID", idEmpleado);
         intent.putExtra("USER_FULL_NAME", nombreEmpleado);
         intent.putExtra("USER_DNI", dniEmpleado);
+        intent.putExtra("ID_TIENDA", idTienda);
+        intent.putExtra("USER_TIENDA", tiendaEmpleado);
         //mandar TIENDA
         startActivity(intent);
     }

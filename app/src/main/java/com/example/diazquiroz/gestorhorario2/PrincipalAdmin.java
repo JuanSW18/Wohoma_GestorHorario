@@ -66,6 +66,8 @@ public class PrincipalAdmin extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(tiendaAdapter);
 
+        getTiendas();
+
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         tvToolBar.setText("Tiendas");

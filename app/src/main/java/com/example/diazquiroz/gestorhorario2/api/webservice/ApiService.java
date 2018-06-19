@@ -1,11 +1,17 @@
 package com.example.diazquiroz.gestorhorario2.api.webservice;
 
+import com.example.diazquiroz.gestorhorario2.api.model.AsistenciaList;
 import com.example.diazquiroz.gestorhorario2.api.model.EntidadAsistencia;
 import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
+import com.example.diazquiroz.gestorhorario2.api.model.TiendaData;
 import com.example.diazquiroz.gestorhorario2.api.model.TiendaList;
 import com.example.diazquiroz.gestorhorario2.api.model.User;
 import com.example.diazquiroz.gestorhorario2.api.model.UserDetail;
 import com.example.diazquiroz.gestorhorario2.api.resultados.TrackEntityHolder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -30,6 +36,18 @@ public interface ApiService {
 
     @GET("/tienda/lista")
     Call<TiendaList> getTiendas();
+
+    @GET("/tienda/detalle/{id}")
+    Call<TiendaData> getTienda(@Path("id") int idTienda);
+
+    @GET("/asistencia/detalle/empleado/{id}")
+    Call<AsistenciaList> getAsistencia(@Path("id") int idEmpleado);
+
+    @GET("/asistencia/lista")
+    Call<AsistenciaList> getAsistencias();
+
+    @GET("/asistencia/detalle/{id}")
+    Call<EntidadAsistencia> getAsistenciaDetalle(@Path("id") int idAsistencia);
 
     @POST("/asistencia/nuevo")
     @FormUrlEncoded
