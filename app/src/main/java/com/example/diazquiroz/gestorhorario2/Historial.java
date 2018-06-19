@@ -43,7 +43,7 @@ public class Historial extends AppCompatActivity {
         idEmpleado = bundle.getInt("USER_ID");
         nombreEmpleado = bundle.getString("USER_FULL_NAME");
         dniEmpleado = bundle.getString("USER_DNI");
-        //nombreTienda = bundle.getString("USER_TIENDA");
+        nombreTienda = bundle.getString("USER_TIENDA");
 
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -52,7 +52,7 @@ public class Historial extends AppCompatActivity {
 
         tvNombre.setText(nombreEmpleado);
         tvDni.setText(dniEmpleado);
-        //tvTienda.setText(nombreTienda);
+        tvTienda.setText(nombreTienda);
     }
 
     @Override
