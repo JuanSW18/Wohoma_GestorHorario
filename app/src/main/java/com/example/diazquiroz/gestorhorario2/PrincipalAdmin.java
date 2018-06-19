@@ -71,6 +71,8 @@ public class PrincipalAdmin extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         tvToolBar.setText("Tiendas");
+
+        getTiendas();
     }
 
     public void nuevaTiendaBtn(View view) {

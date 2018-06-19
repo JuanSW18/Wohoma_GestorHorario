@@ -15,12 +15,32 @@ public class UserDetail {
         @SerializedName("idTienda")
         private Tienda idTienda;
 
+        @SerializedName("idRol")
+        private Rol dataRol;
+
         public int getIdEmpleado() {
             return idEmpleado;
         }
 
         public Tienda getIdTienda() {
             return idTienda;
+        }
+
+        public Rol getIdRol() {
+            return dataRol;
+        }
+
+        public class Rol{
+            @SerializedName("idRol")
+            private int idRol;
+
+            public int getIdRol() {
+                return idRol;
+            }
+
+            public void setIdRol(int idRol) {
+                this.idRol = idRol;
+            }
         }
     }
 

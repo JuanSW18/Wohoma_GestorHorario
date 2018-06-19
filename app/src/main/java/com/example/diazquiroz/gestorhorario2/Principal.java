@@ -28,10 +28,6 @@ public class Principal extends AppCompatActivity {
     private String tiendaEmpleado;
     private int idTienda;
 
-    // array que se usara para mandar data mediante el intent
-    // 0506 PSIBLEMENTE YA NO SIRVA ESTE STRING
-    //private String dataEmpleado[];
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,12 +56,7 @@ public class Principal extends AppCompatActivity {
 
         tvNombre.setText(nombreEmpleado);
         tvDni.setText(dniEmpleado);
-        // Llamar a metodo para llenar los 3 campos (nombre, dni, tienda)
-        /*tvNombre.setText("Elmer Frio Quiroz");
-        tvDni.setText("78542369");*/
         tvTienda.setText(tiendaEmpleado);
-
-
     }
 
     @Override
@@ -106,11 +97,13 @@ public class Principal extends AppCompatActivity {
         intent.putExtra("ID_TIENDA", idTienda);
         intent.putExtra("USER_TIENDA", tiendaEmpleado);
         //mandar TIENDA
+        intent.putExtra("USER_TIENDA", tiendaEmpleado);
         startActivity(intent);
     }
 
     public void permisosBtn (View view) {
         Intent intent = new Intent(this, Permisos.class);
+        intent.putExtra("USER_ID", idEmpleado);
         startActivity(intent);
     }
 

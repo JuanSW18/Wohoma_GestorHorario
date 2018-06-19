@@ -104,7 +104,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    //FUNCION PARA OBTENER EL NOMBRE DE LA TIENDA
+    //FUNCION PARA OBTENER EL NOMBRE DE LA TIENDA e IDROL para poder hacer el intent respectivo
     public void getDetalleUsuario(int idEmpleado){
         apiService = ApiAdapter.createService(ApiService.class);
         Call<UserDetail> call = apiService.getDetalleUsuario(idEmpleado);
@@ -115,13 +115,14 @@ public class Login extends AppCompatActivity {
                     String direccionTienda = response.body().getData().getIdTienda().getDireccion();
                     int idTienda = response.body().getData().getIdTienda().getIdTienda();
                     Log.e(TAG, "Tienda: " + idTienda);
+                    int idRol = response.body().getData().getIdRol().getIdRol();
                     //Log.i(TAG, "DATOS TIENDA:\n" + response.body().getData().getIdTienda().getDireccion());
 
                     toast = Toast.makeText(context, bienvenida, duration);
                     toast.show();
 
                     // CACHIMBO PENDEJO PON UNA CONDICIONAL PARA MANDAR AL USER A SU RESPECTIVA VISTA
-                    if(user.getIdEmpleado() == 1){
+                    if(idRol == 1){
                         intent = new Intent(Login.this, PrincipalAdmin.class);
                         startActivity(intent);
                     }
