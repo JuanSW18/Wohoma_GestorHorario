@@ -1,10 +1,6 @@
 package com.example.diazquiroz.gestorhorario2.api.webservice;
 
-
 import com.example.diazquiroz.gestorhorario2.api.model.AsistenciaList;
-
-import android.widget.CalendarView;
-
 import com.example.diazquiroz.gestorhorario2.api.model.EntidadAsistencia;
 import com.example.diazquiroz.gestorhorario2.api.model.PermisoResponse;
 import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
@@ -12,11 +8,6 @@ import com.example.diazquiroz.gestorhorario2.api.model.TiendaData;
 import com.example.diazquiroz.gestorhorario2.api.model.TiendaList;
 import com.example.diazquiroz.gestorhorario2.api.model.User;
 import com.example.diazquiroz.gestorhorario2.api.model.UserDetail;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import org.json.JSONArray;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -44,7 +35,7 @@ public interface ApiService {
     @GET("/tienda/detalle/{id}")
     Call<TiendaData> getTienda(@Path("id") int idTienda);
 
-    @GET("/asistencia/detalle/empleado/{id}")
+    @GET("/asistencia/siete/ultimos/{id}")
     Call<AsistenciaList> getAsistencia(@Path("id") int idEmpleado);
 
     @GET("/asistencia/lista")
