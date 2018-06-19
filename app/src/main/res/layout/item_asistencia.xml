@@ -11,12 +11,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <!--TextView
             android:id="@+id/idAsistencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:layout_marginRight="12dp"/>
+            android:layout_marginRight="12dp"/-->
 
         <TextView
             android:id="@+id/fecha"

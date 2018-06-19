@@ -40,8 +40,8 @@ public class AsistenciaAdapter extends RecyclerView.Adapter<AsistenciaAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         EntidadAsistencia asistencia = asistencias.get(position);
-        ++numero;
-        holder.idAsistencia.setText(numero.toString());
+        //++numero;
+        //holder.idAsistencia.setText();
         holder.hEntrada.setText(asistencia.gethEntrada().toString());
         holder.hSalida.setText(asistencia.gethSalida().toString());
         holder.fecha.setText(asistencia.getFecha().toString());
