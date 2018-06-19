@@ -1,10 +1,10 @@
 package com.example.diazquiroz.gestorhorario2.api.webservice;
 
-import android.widget.CalendarView;
-
+import com.example.diazquiroz.gestorhorario2.api.model.AsistenciaList;
 import com.example.diazquiroz.gestorhorario2.api.model.EntidadAsistencia;
 import com.example.diazquiroz.gestorhorario2.api.model.PermisoResponse;
 import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
+import com.example.diazquiroz.gestorhorario2.api.model.TiendaData;
 import com.example.diazquiroz.gestorhorario2.api.model.TiendaList;
 import com.example.diazquiroz.gestorhorario2.api.model.User;
 import com.example.diazquiroz.gestorhorario2.api.model.UserDetail;
@@ -31,6 +31,18 @@ public interface ApiService {
 
     @GET("/tienda/lista")
     Call<TiendaList> getTiendas();
+
+    @GET("/tienda/detalle/{id}")
+    Call<TiendaData> getTienda(@Path("id") int idTienda);
+
+    @GET("/asistencia/siete/ultimos/{id}")
+    Call<AsistenciaList> getAsistencia(@Path("id") int idEmpleado);
+
+    @GET("/asistencia/lista")
+    Call<AsistenciaList> getAsistencias();
+
+    @GET("/asistencia/detalle/{id}")
+    Call<EntidadAsistencia> getAsistenciaDetalle(@Path("id") int idAsistencia);
 
     @POST("/asistencia/nuevo")
     @FormUrlEncoded

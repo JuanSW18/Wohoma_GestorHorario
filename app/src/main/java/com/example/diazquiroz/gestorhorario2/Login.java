@@ -113,6 +113,8 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<UserDetail> call, Response<UserDetail> response) {
                 if(response.isSuccessful()){
                     String direccionTienda = response.body().getData().getIdTienda().getDireccion();
+                    int idTienda = response.body().getData().getIdTienda().getIdTienda();
+                    Log.e(TAG, "Tienda: " + idTienda);
                     int idRol = response.body().getData().getIdRol().getIdRol();
                     //Log.i(TAG, "DATOS TIENDA:\n" + response.body().getData().getIdTienda().getDireccion());
 
@@ -131,6 +133,7 @@ public class Login extends AppCompatActivity {
                         intent.putExtra("USER_FULL_NAME", user.getNombre() + " " + user.getApPaterno() + " " + user.getApMaterno());
                         intent.putExtra("USER_DNI", user.getDni());
                         intent.putExtra("USER_TIENDA", direccionTienda);
+                        intent.putExtra("ID_TIENDA", idTienda);
                         startActivity(intent);
                     }
                     edUser.setText("");

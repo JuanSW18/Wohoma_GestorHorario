@@ -2,6 +2,8 @@ package com.example.diazquiroz.gestorhorario2.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONObject;
+
 import java.sql.Date;
 import java.sql.Time;
 
@@ -9,7 +11,7 @@ import java.sql.Time;
  * Created by DIAZ QUIROZ on 5/06/2018.
  */
 
-public class EntidadAsistencia {
+public class EntidadAsistencia{
 
     private String status = "ok";
 
@@ -26,10 +28,10 @@ public class EntidadAsistencia {
     private Date fecha;
 
     @SerializedName("hExtras")
-    private int hExtras;
+    private Integer hExtras;
 
     @SerializedName("idEmpleado")
-    private int idempleado;
+    private Integer idempleado;
 
 
     public String getStatus() {
@@ -56,6 +58,10 @@ public class EntidadAsistencia {
         this.hEntrada = java.sql.Time.valueOf(hEntrada);
     }
 
+    public void sethEntrada(long hEntrada) {
+        this.hEntrada = new Time(hEntrada*1000 - 3600000);
+    }
+
     public Time gethSalida() {
         return hSalida;
     }
@@ -64,15 +70,23 @@ public class EntidadAsistencia {
         this.hSalida = java.sql.Time.valueOf(hSalida);
     }
 
+    public void sethSalida(long hSalida) {
+        this.hSalida = new Time(hSalida*1000 - 3600000);
+    }
+
     public Date getFecha() {
         return fecha;
     }
 
     public void setFecha(long fecha) {
-        this.fecha = new Date(fecha);
+        this.fecha = new Date(fecha*1000);
     }
 
-    public int gethExtras() {
+    public void setFecha(String fecha) {
+        this.fecha = java.sql.Date.valueOf(fecha);
+    }
+
+    public Integer gethExtras() {
         return hExtras;
     }
 
@@ -80,11 +94,24 @@ public class EntidadAsistencia {
         this.hExtras = hExtras;
     }
 
-    public int getIdempleado() {
+    public Integer getIdempleado() {
         return idempleado;
     }
 
     public void setIdempleado(int idempleado) {
         this.idempleado = idempleado;
+    }
+
+    @Override
+    public String toString() {
+        return "EntidadAsistencia{" +
+                "status='" + status + '\'' +
+                ", idAsistencia=" + idAsistencia +
+                ", hEntrada=" + hEntrada +
+                ", hSalida=" + hSalida +
+                ", fecha=" + fecha +
+                ", hExtras=" + hExtras +
+                ", idempleado=" + idempleado +
+                '}';
     }
 }
