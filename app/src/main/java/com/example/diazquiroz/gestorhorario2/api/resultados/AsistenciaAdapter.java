@@ -28,7 +28,7 @@ public class AsistenciaAdapter extends RecyclerView.Adapter<AsistenciaAdapter.Vi
         private TextView idAsistencia, hEntrada, hSalida, fecha, hExtras;
         public ViewHolder(View itemView) {
             super(itemView);
-            idAsistencia = itemView.findViewById(R.id.idAsistencia);
+            //idAsistencia = itemView.findViewById(R.id.idAsistencia);
             hEntrada = itemView.findViewById(R.id.hEntrada);
             hSalida = itemView.findViewById(R.id.hSalida);
             fecha = itemView.findViewById(R.id.fecha);
