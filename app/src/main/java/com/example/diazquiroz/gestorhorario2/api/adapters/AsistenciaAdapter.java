@@ -1,4 +1,4 @@
-package com.example.diazquiroz.gestorhorario2.api.resultados;
+package com.example.diazquiroz.gestorhorario2.api.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +11,6 @@ import com.example.diazquiroz.gestorhorario2.R;
 import com.example.diazquiroz.gestorhorario2.api.model.EntidadAsistencia;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AsistenciaAdapter extends RecyclerView.Adapter<AsistenciaAdapter.ViewHolder>{
 

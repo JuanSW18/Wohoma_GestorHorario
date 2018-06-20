@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
 import com.example.diazquiroz.gestorhorario2.api.model.User;
 import com.example.diazquiroz.gestorhorario2.api.model.UserDetail;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiAdapter;
@@ -114,9 +113,7 @@ public class Login extends AppCompatActivity {
                 if(response.isSuccessful()){
                     String direccionTienda = response.body().getData().getIdTienda().getDireccion();
                     int idTienda = response.body().getData().getIdTienda().getIdTienda();
-                    Log.e(TAG, "Tienda: " + idTienda);
                     int idRol = response.body().getData().getIdRol().getIdRol();
-                    //Log.i(TAG, "DATOS TIENDA:\n" + response.body().getData().getIdTienda().getDireccion());
 
                     toast = Toast.makeText(context, bienvenida, duration);
                     toast.show();

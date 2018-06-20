@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
 import com.example.diazquiroz.gestorhorario2.api.model.TiendaList;
-import com.example.diazquiroz.gestorhorario2.api.resultados.TiendaAdapter;
+import com.example.diazquiroz.gestorhorario2.api.adapters.TiendaAdapter;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiAdapter;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiService;
 
@@ -65,8 +65,6 @@ public class PrincipalAdmin extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PrincipalAdmin.this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(tiendaAdapter);
-
-        getTiendas();
 
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

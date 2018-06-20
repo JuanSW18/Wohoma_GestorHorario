@@ -2,6 +2,7 @@ package com.example.diazquiroz.gestorhorario2.api.webservice;
 
 import com.example.diazquiroz.gestorhorario2.api.model.AsistenciaList;
 import com.example.diazquiroz.gestorhorario2.api.model.EntidadAsistencia;
+import com.example.diazquiroz.gestorhorario2.api.model.EntidadPermisoData;
 import com.example.diazquiroz.gestorhorario2.api.model.PermisoResponse;
 import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
 import com.example.diazquiroz.gestorhorario2.api.model.TiendaData;
@@ -56,5 +57,8 @@ public interface ApiService {
     @POST("permiso/nuevo")
     @FormUrlEncoded
     Call<PermisoResponse> enviarPermiso(@Field("json") String json);
+
+    @GET("permiso/detalle/empleado/{id}")
+    Call<EntidadPermisoData> getListaPermisoById(@Path("id") int idEmpleado);
 
 }

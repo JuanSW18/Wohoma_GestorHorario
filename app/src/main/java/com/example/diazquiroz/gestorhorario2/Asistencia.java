@@ -27,7 +27,6 @@ import com.example.diazquiroz.gestorhorario2.api.webservice.ApiService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

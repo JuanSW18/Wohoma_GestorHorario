@@ -13,19 +13,13 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.diazquiroz.gestorhorario2.api.model.AsistenciaList;
 import com.example.diazquiroz.gestorhorario2.api.model.EntidadAsistencia;
 
-import com.example.diazquiroz.gestorhorario2.api.model.Tienda;
-import com.example.diazquiroz.gestorhorario2.api.model.TiendaList;
-import com.example.diazquiroz.gestorhorario2.api.resultados.AsistenciaAdapter;
+import com.example.diazquiroz.gestorhorario2.api.adapters.AsistenciaAdapter;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiAdapter;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiService;
-import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,9 +46,6 @@ public class Historial extends AppCompatActivity {
     private String nombreTienda;
 
     private ApiService apiService;
-
-    private int idEmpleado2;
-
     private final String TAG = Asistencia.class.getSimpleName();
 
     @Override

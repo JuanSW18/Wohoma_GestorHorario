@@ -59,6 +59,7 @@
         android:layout_marginRight="10dp"
         android:layout_height="122dp"
         android:hint="Ingrese su razon"
+        android:focusable="false"
         android:inputType="text|textMultiLine"
         android:textColor="@android:color/black" />
 
@@ -73,5 +74,33 @@
         android:background="@color/colorPrimaryDark"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20px">
+
+        <TextView
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:text="Fecha Inicio"/>
+
+        <TextView
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:text="Fecha Fin"/>
+
+        <TextView
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:text="Estado"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_permisos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

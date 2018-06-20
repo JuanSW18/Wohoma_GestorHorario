@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -16,11 +18,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.diazquiroz.gestorhorario2.api.adapters.PermisoAdapter;
+import com.example.diazquiroz.gestorhorario2.api.model.EntidadPermiso;
+import com.example.diazquiroz.gestorhorario2.api.model.EntidadPermisoData;
 import com.example.diazquiroz.gestorhorario2.api.model.PermisoResponse;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiAdapter;
 import com.example.diazquiroz.gestorhorario2.api.webservice.ApiService;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,6 +59,10 @@ public class Permisos extends AppCompatActivity {
     private ApiService apiService;
     private final String TAG = Permisos.class.getSimpleName();
 
+    private RecyclerView recyclerView;
+    private List<EntidadPermiso> listaPermisos = new ArrayList<>();
+    private PermisoAdapter permisoAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +78,18 @@ public class Permisos extends AppCompatActivity {
 
         idEmpleado = bundle.getInt("USER_ID");
 
+        recyclerView = findViewById(R.id.recycler_view_permisos);
+        permisoAdapter = new PermisoAdapter(Permisos.this, listaPermisos);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Permisos.this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(permisoAdapter);
+
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         tvToolBar.setText("Solicitud de Permiso");
+        getListaPermisoById(idEmpleado);
 
         fechaInicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +137,28 @@ public class Permisos extends AppCompatActivity {
                 Log.e(TAG, "PASO ALGO:\n Unable to submit post to API.");
             }
         });
+    }
+
+    public void getListaPermisoById(int idEmpleado){
+        apiService = ApiAdapter.createService(ApiService.class);
+        Call<EntidadPermisoData> call = apiService.getListaPermisoById(idEmpleado);
+        call.enqueue(new Callback<EntidadPermisoData>() {
+            @Override
+            public void onResponse(Call<EntidadPermisoData> call, Response<EntidadPermisoData> response) {
+                if(response.isSuccessful()){
+                    //Log.i(TAG, response.body().toString());
+                    for (EntidadPermiso permiso: response.body().getData()){
+                        listaPermisos.add(permiso);
+                    }
+                    permisoAdapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onFailure(Call<EntidadPermisoData> call, Throwable t) {
+                Log.e(TAG, "PASO ALGO:\n Unable to submit post to API.");
+            }
+        });
+
     }
 
     public void escogerFecha(final EditText fecha, final int setInicio_Fin){
