@@ -11,7 +11,6 @@ import com.example.diazquiroz.gestorhorario2.R;
 import com.example.diazquiroz.gestorhorario2.api.model.EntidadAsistencia;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AsistenciaAdapter extends RecyclerView.Adapter<AsistenciaAdapter.ViewHolder>{
 
