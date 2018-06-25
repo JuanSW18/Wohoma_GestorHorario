@@ -12,19 +12,19 @@
 
         <TextView
             android:id="@+id/itemPermisoFechaInicio"
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
             android:textColor="#000"/>
 
         <TextView
             android:id="@+id/itemPermisoFechaFin"
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
             android:textColor="#000"/>
 
         <TextView
             android:id="@+id/itemPermisoBand"
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
             android:textColor="#000"/>
 

@@ -2,11 +2,10 @@ package com.example.diazquiroz.gestorhorario2.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 public class EntidadPermiso {
 
@@ -43,18 +42,13 @@ public class EntidadPermiso {
 
         public String getFechatoString() throws ParseException {
             int value;
-            value = this.timestamp + this.offset;
-            /*SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
-            Date date = originalFormat.parse(String.valueOf(value));
+            value = this.timestamp - this.offset;
+            Timestamp ts = new Timestamp(value*1000L);
+            Date date = new Date(ts.getTime());
+            SimpleDateFormat jdf = new SimpleDateFormat("dd-MM-yyyy");
+            String java_date = jdf.format(date);
 
-            SimpleDateFormat newFormat = new SimpleDateFormat("dd-MM-yyyy");
-            String formatedDate = newFormat.format(date);*/
-
-            int year = value / 10000;
-            int month = (value % 10000) / 100;
-            int day = value % 100;
-            Date date = new GregorianCalendar(year, month, day).getTime();
-            return date.toString();
+            return java_date;
         }
     }
 

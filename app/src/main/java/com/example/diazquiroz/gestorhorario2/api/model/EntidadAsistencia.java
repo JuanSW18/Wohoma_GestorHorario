@@ -2,8 +2,6 @@ package com.example.diazquiroz.gestorhorario2.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import org.json.JSONObject;
-
 import java.sql.Date;
 import java.sql.Time;
 
