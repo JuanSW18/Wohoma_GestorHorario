@@ -27,7 +27,7 @@ public class AsistenciaAdapter extends RecyclerView.Adapter<AsistenciaAdapter.Vi
         private TextView idAsistencia, hEntrada, hSalida, fecha, hExtras;
         public ViewHolder(View itemView) {
             super(itemView);
-            idAsistencia = itemView.findViewById(R.id.idAsistencia);
+            //idAsistencia = itemView.findViewById(R.id.idAsistencia);
             hEntrada = itemView.findViewById(R.id.hEntrada);
             hSalida = itemView.findViewById(R.id.hSalida);
             fecha = itemView.findViewById(R.id.fecha);
@@ -39,8 +39,8 @@ public class AsistenciaAdapter extends RecyclerView.Adapter<AsistenciaAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         EntidadAsistencia asistencia = asistencias.get(position);
-        ++numero;
-        holder.idAsistencia.setText(numero.toString());
+        //++numero;
+        //holder.idAsistencia.setText();
         holder.hEntrada.setText(asistencia.gethEntrada().toString());
         holder.hSalida.setText(asistencia.gethSalida().toString());
         holder.fecha.setText(asistencia.getFecha().toString());
